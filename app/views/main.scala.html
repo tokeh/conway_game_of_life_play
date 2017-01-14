@@ -1,0 +1,131 @@
+@(title: String, isGame: Boolean)(content: Html)
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>@title</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+        <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/main.css")">
+        <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/bootstrap-slider.min.css")">
+        <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">
+    </head>
+    <body>
+
+        <nav class="navbar navbar-default" role="navigation">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse"
+                            data-target="#navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="/">Game of Life</a>
+                </div>
+                <div class="collapse navbar-collapse" id="navbar-collapse">
+
+                    @if(!isGame) {
+                    <div class="navbar-left">
+	                    <div class="btn-group">
+	                        <a href="@routes.Application.createNewGame()" class="create-game">
+		                        <button type="button" class="btn btn-default navbar-btn">
+		                            <span class="glyphicon glyphicon-plus"></span> Create Game
+		                        </button>
+	                        </a>
+	                    </div>
+	                </div>
+                    }
+                    
+                    @if(isGame) {
+                    <div class="navbar-left">
+	                    <div class="btn-group">
+	
+	                        <button type="button" class="btn btn-default navbar-btn clear">
+	                            <span class="glyphicon glyphicon-remove"></span>
+	                        </button>
+	                        <button type="button" class="btn btn-default navbar-btn step-1">
+	                            <span class="glyphicon glyphicon-play"></span>
+	                        </button>
+	                        <button type="button" class="btn btn-default navbar-btn step-n"
+	                                data-steps="50" data-speed="50">
+	                            <span class="glyphicon glyphicon-fast-forward"></span>
+	                        </button>
+	
+	                    </div>
+	
+	                   <!-- <div class="btn-group">
+	
+	                        <button type="button" class="btn btn-primary navbar-btn spawn-figure" data-figure="g">
+	                            Glider
+	                        </button>
+	                        <button type="button" class="btn btn-primary navbar-btn spawn-figure" data-figure="rp">
+	                            r-Pentonimo
+	                        </button>
+	
+	                    </div> -->
+	
+	                    <div class="btn-group">
+	
+	                        <button type="button" class="btn btn-default navbar-btn submit-highscore"
+	                            data-toggle="modal" data-target=".highscore-modal">
+	                            Submit score
+	                        </button>
+	
+	                    </div>
+                    
+                    </div> <!-- .navbar-left -->
+                    
+                    <div class="navbar-right">
+                        <div class="status navbar-text"></div>
+                        <div class="stepped-generations navbar-text" title="number of generations"></div>
+                        <div class="world navbar-text"></div>
+                    </div>
+                    
+                    }
+
+                </div>
+            </div>
+        </nav>
+
+        <div class="modal fade highscore-modal" id="highscore" tabindex="-1" 
+                role="dialog" aria-labelledby="highscoreModel" aria-hidden="true">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+	                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+	                    <h4 class="modal-title" id="myLargeModalLabel">Submit your highscore</h4>
+                    </div> <!-- .modal-header -->
+
+                    <div class="modal-body">
+                        <form method="post" action="" role="form">
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="player" placeholder="your name">
+                            </div>
+                            
+                            <button type="submit" class="btn btn-primary">submit highscore</button>
+
+                            <div class="form-group">
+                                <p class="response"></p>
+                            </div>
+                        </form>
+                    </div> <!-- .modal-body -->
+                </div> <!-- .modal-content -->
+            </div> <!-- .modal-dialog -->
+        </div>
+        
+        <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+        <script src="@routes.Assets.at("javascripts/bootstrap-slider.min.js")"></script>
+        @if(isGame) {
+            <script src="@routes.Assets.at("javascripts/gameoflife.js")"></script>
+        }
+        <script src="@routes.Assets.at("javascripts/global.js")"></script>
+        
+
+        @content
+
+    </body>
+</html>

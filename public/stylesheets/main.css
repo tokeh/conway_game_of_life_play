@@ -1,0 +1,56 @@
+body {
+}
+
+.template {
+	display: none;
+}
+
+.slider {
+	position: absolute !important;
+}
+
+.slider.slider-vertical {
+	top: 30px;
+}
+
+.slider.slider-horizontal {
+	left: 50px;
+}
+
+#grid {
+	margin: 30px;
+}
+
+#grid div {
+	line-height: 0;
+}
+
+.cell {
+	display: inline-block;
+	border: 1px solid #151515;
+	width: 20px;
+	height: 20px;
+    background: black;
+}
+
+.cell.alive {
+	background: rgb(0, 176, 255);
+}
+
+.cell.spawn-hovered {
+	background: red;
+}
+
+.clear {
+	clear: both;
+}
+
+.status.navbar-text {
+	background: rgb(0, 175, 255);
+	padding: 0 5px;
+	color: #fff;
+}
+
+.stepped-generations {
+	cursor: help;
+}
