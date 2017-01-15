@@ -4,8 +4,7 @@ import java.util.{Observable, Observer}
 
 import akka.actor.{Actor, ActorRef}
 import com.tokeh.gameoflife.controller.impl.ControllerImpl
-import com.tokeh.gameoflife.model.impl.OriginalWorldRules
-import com.tokeh.gameoflife.model.Rules
+import com.tokeh.gameoflife.model.{OriginalWorld, World}
 import com.tokeh.gameoflife.view.gui.SwingView
 import com.tokeh.gameoflife.view.text.TextView
 import play.api.libs.json.JsValue
@@ -13,8 +12,8 @@ import play.api.libs.json.JsValue
 class GameOfLifeActor extends Actor with Observer {
 
   val controller = new ControllerImpl()
-  val rules: Rules = new OriginalWorldRules
-  controller.configureStepper(rules, rules.name)
+  val world: World = new OriginalWorld{}
+  controller.configureStepper(world.rules, world.name)
   val textView = new TextView(controller)
   val swingView = new SwingView(controller)
   val outSockets = new scala.collection.mutable.HashSet[ActorRef]
